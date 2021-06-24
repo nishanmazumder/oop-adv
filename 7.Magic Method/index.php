@@ -7,13 +7,14 @@ class Magic{
     private $data = ["Name" => "Nishan", "XM"=>"PHP", "Time"=>"2pm/Sun"];
 
     function __construct(){
-        echo "Conastructor ! <br />";
+        //echo "Conastructor ! <br />";
     }
 
-    function getName(){
-        echo $this->name;
+    private function getName($name){
+        echo $this->name = $name;
     }
 
+    //Get
     function __get($key){
         if(array_key_exists($key, $data = $this->data)){
             return $data[$key];
@@ -24,6 +25,7 @@ class Magic{
         }
     }
 
+    //Set
     function __set($property, $value)
     {
        //echo "Value from $name:$value <br />";
@@ -35,35 +37,55 @@ class Magic{
        }
     }
 
-    function __call($name, $arguments)
+    //Call
+    function __call($method, $arg)
     {
-      echo "this ".$name." has value :". implode(',', $arguments)."<br/>";  
+      //echo "this ".$method." has value :". implode(',', $arg)."<br/>";  
+        if(method_exists($this, $method)){
+            call_user_func_array([$this, $method], $arg);
+        }else{
+            echo "Method ($method) dose not exist!";
+        }
+
+    }
+
+    //Isset
+    private $fname;
+    private $lname;
+    public $test = "Test";
+
+    function getNameCheck($fname, $lname){
+        $this->fname = $fname;
+        $this->lname = $lname;
+    }
+
+    function __isset($property)
+    {
+        echo isset($this->$property);
     }
 
     function __destruct()
     {
-        echo "magic done !";
+        //echo "magic done !";
     }
 }
 
+
 $magic = new Magic;
 
-$magic->Nishan;
+//Get
+echo $magic->Name.     "<br/>";
 
-$magic->Age=20;
+//Set
+echo $magic->name = "Mazumder";
 
-$magic->method(2, 3, 4, 5);
+//Call
+$magic->getName("Call Name");
+
+//Isset
+$magic->getNameCheck("Nishan", "M");
+echo isset($magic->fname);
 
 echo "<hr>";
 
-echo $magic->Name;
 
-echo $magic->Nishan."\n";
-
-echo "<hr>";
-
-$magic->name = "Nishan";
-
-echo $magic->test = "Test Name";
-
-$magic->getName();
