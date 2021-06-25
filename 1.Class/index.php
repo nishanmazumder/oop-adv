@@ -61,4 +61,19 @@ $student->student_name("Nishan");
 echo "</br>";
 $student->student_data();
 
+class Student extends School{
+    function nameIt(){
+        echo $this->name;
+
+        
+    }
+
+    
+}
+
+echo "<hr>";
+
+$test = new Student("mm", "sET");
+$test->nameIt();
+
 
