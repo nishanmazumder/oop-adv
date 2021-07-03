@@ -22,24 +22,21 @@ $file = new File("file/file.txt");
 
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col-md-6 mt-5">
+            <div class="col-md-6 mt-5 nm-data">
 
                 <?php
-                if (isset($_POST["nm_txt_add"])) {
-                    $text = $_POST["nm_txt"];
-                    $file->add_data($text);
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addData"])) {
+                    ob_clean();
+                    $file->add_data($_POST["addData"]);
+                    exit();
                 }
                 ?>
 
-                <form class="row g-3" method="post" action="">
-                    <div class="col-auto">
-                        <input type="text" class="form-control" name="nm_txt" id="" value="" placeholder="Change Text!">
-                    </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary mb-3" name="nm_txt_add" id="nmTxtAdd">Add
-                            Text</button>
-                    </div>
-                </form>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="nm_txt" id="nm_txt" placeholder="Add Text!" aria-label="Recipient's username" aria-describedby="nm_txt_add">
+                    <button class="btn btn-outline-primary" name="nm_txt_add" type="button" id="nm_txt_add">Add
+                        Text</button>
+                </div>
             </div>
         </div>
 
@@ -62,21 +59,29 @@ $file = new File("file/file.txt");
     </script>
 
     <script>
-        // $(document).ready(function() {
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: 'file/file.txt',
-        //         success: function(data) {
-        //             test(data)
-        //         }
+        $(document).ready(function() {
 
-        //     });
+            $("#nm_txt_add").click(function(e) {
+                e.preventDefault()
 
-        //     function test(data) {
-        //         $('.nm-text-area').text(data)
-        //     }
+                var text = $("#nm_txt").val();
+                var data = {
+                    addData: text
+                }
+                var url = "index.php"
 
-        // });
+                //$.post(url, data)
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: "SUCCESS!"
+                })
+            })
+
+
+        });
     </script>
 </body>
 
