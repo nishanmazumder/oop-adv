@@ -65,10 +65,10 @@ class Student extends School{
     function nameIt(){
         echo $this->name;
 
-        
+
     }
 
-    
+
 }
 
 echo "<hr>";

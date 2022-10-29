@@ -20,6 +20,40 @@ $file = new File("file/file.txt");
 
 <body>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><?php echo "TEST <br>";
+
+
+
+            $var =  [];
+
+            function blankT($res='', $test = null){
+                $lists = func_get_args();
+
+                foreach($lists as $list){
+                    print_r($list);
+                }
+
+                //print_r($lists);
+            }
+
+
+            print_r(blankT(8080, 'Test'));
+
+
+
+
+
+
+
+
+            ?></h1>
+        </div>
+    </div>
+</div>
+
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-md-6 mt-5 nm-data">

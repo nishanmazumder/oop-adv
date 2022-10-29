@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include "Customer.php";
 include "User.php";
@@ -12,6 +12,9 @@ $customer = new Customer;
 $user = new User($customer);
 
 $user2 = new User;
+
+$a = "test";
+
 
 
 // function user($class){

@@ -40,9 +40,11 @@ class User{
 }
 
 $user = User::get_instance();
+$user2 = User::get_instance();
+$user3 = User::get_instance();
 
 //$user2 = new User;
 //$user3->test();
 
-print_r($user);
+print_r($user3);
 

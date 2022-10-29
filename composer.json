@@ -1,0 +1,22 @@
+{
+  "name": "nishanmazumder/php",
+  "description": "PHP Unit test",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Nishan M",
+      "email": "arosh019@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "App\\": [
+        "0.Tweaks/Testing/class"
+      ]
+    },
+
+    "classmap": ["0.Tweaks/Testing/class/"]
+  }
+}
